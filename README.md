@@ -1,3 +1,9 @@
+# Como iniciar
+Esse projeto precisa do backEnd rodando que está disponível no repositório: https://github.com/rphmauriciodev/petMatch-back
+### 1 - clone o projeto
+### 2 - instale as depedências utilizando o comando 'yarn' na raiz do projeto
+### 3 - utilize o comando 'yarn start' para rodar a aplicação
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
