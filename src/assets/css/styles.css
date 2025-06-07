@@ -1,0 +1,28 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  font-weight: 600;
+  font-family: "Roboto";
+}
+.header {
+  height: 15vh;
+  display: flex;
+  justify-content: space-around;
+  background-color: white;
+  font: inherit;
+}
+
+#MenuLogo img {
+  height: 150px;
+}
+#MenuOptions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+#MenuMedia {
+  display: flex;
+  gap: 20px;
+  font-size: 30px;
+  align-items: center;
+}
