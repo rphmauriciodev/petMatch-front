@@ -4,7 +4,7 @@ import { useApi } from "hooks/useApi";
 import { Pet } from "utils/types";
 
 export const PetsPage = () => {
-  const { data: pets } = useApi("/pets");
+  const { data: pets } = useApi<Pet[]>("/pets");
 
   return (
     <Box
@@ -25,10 +25,11 @@ export const PetsPage = () => {
           justifyContent: "center",
           gap: "12px",
           marginTop: "28px",
+          flexWrap: "wrap",
         }}
       >
-        {pets?.map((pet: Pet) => (
-          <PetCard pet={pet} />
+        {pets?.map((pet) => (
+          <PetCard key={pet.id} pet={pet} />
         ))}
       </Box>
     </Box>

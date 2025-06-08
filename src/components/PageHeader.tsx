@@ -19,7 +19,17 @@ export const PageHeader = () => {
   const navigate = useNavigate();
 
   return (
-    <Box className="header" sx={{ textTransform: "uppercase" }}>
+    <Box
+      className="header"
+      sx={{
+        textTransform: "uppercase",
+        position: "fixed",
+        width: "100%",
+        left: 0,
+        top: 0,
+        zIndex: 1
+      }}
+    >
       <IconButton
         id="MenuLogo"
         sx={{ "&:hover": { backgroundColor: "inherit" } }}
@@ -29,7 +39,7 @@ export const PageHeader = () => {
       </IconButton>
       <List id="MenuOptions">
         {menuOptions.map((option) => (
-          <ListItemButton
+          <ListItemButton key={option.label}
             onClick={(e) => {
               e.preventDefault();
               navigate(option.href);

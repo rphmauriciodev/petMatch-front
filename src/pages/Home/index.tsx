@@ -6,7 +6,7 @@ import PetCard from "components/PetCard";
 import { useNavigate } from "react-router-dom";
 
 const Home = () => {
-  const { data: pets } = useApi("/pets/destaques");
+  const { data: pets } = useApi<Pet[]>("/pets/destaques");
 
   const navigate = useNavigate();
 

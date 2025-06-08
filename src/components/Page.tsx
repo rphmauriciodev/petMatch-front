@@ -9,7 +9,7 @@ export const Page = ({ children }: { children: ReactNode }) => {
       <PageHeader />
       <Box
         sx={{
-          marginTop: "80px",
+          marginTop: "200px",
           marginBottom: "80px",
         }}
       >

@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import api from "../api";
 
-export function useApi(endpoint: string) {
-  const [data, setData] = useState<any>(null);
+export function useApi<T>(endpoint: string) {
+  const [data, setData] = useState<T | undefined>( undefined);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
