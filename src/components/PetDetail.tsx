@@ -9,6 +9,8 @@ import {
 import { useApi } from "hooks/useApi";
 import CloseIcon from "@mui/icons-material/Close";
 import { PetDetail } from "utils/types";
+import { useNavigate } from "react-router-dom";
+import { PetButton } from "./PetButton";
 
 export const PetsDetail = ({
   id,
@@ -17,6 +19,7 @@ export const PetsDetail = ({
   id: number;
   onClose: () => void;
 }) => {
+  const navigate = useNavigate();
   const { data: pet } = useApi<PetDetail>(`pets/${id}`);
 
   return (
@@ -54,6 +57,24 @@ export const PetsDetail = ({
         />
         <Box sx={{ marginTop: "12px" }}>
           <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+            Gênero:{" "}
+            <Typography variant="h6" component="span">
+              {pet?.genero}
+            </Typography>
+          </Typography>
+          <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+            Cor:{" "}
+            <Typography variant="h6" component="span">
+              {pet?.cor}
+            </Typography>
+          </Typography>
+          <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+            Raça:{" "}
+            <Typography variant="h6" component="span">
+              {pet?.raca ?? "Não definida"}
+            </Typography>
+          </Typography>
+          <Typography variant="h6" sx={{ fontWeight: "bold" }}>
             História:{" "}
             <Typography variant="h6" component="span">
               {pet?.historia}
@@ -74,29 +95,10 @@ export const PetsDetail = ({
             justifyContent: "end",
           }}
         >
-          <Button
-            variant="contained"
-            size="large"
-            // onClick={() => setOpen(!open)}
-            sx={{
-              fontWeight: 600,
-              padding: "8px 16px",
-              borderRadius: "20px",
-              boxShadow: "none",
-              marginTop: "8px",
-              "&:hover": {
-                boxShadow: "none",
-              },
-              "&:focus": {
-                boxShadow: "none",
-              },
-              "&:active": {
-                boxShadow: "none",
-              },
-            }}
-          >
-            Adotar
-          </Button>
+          <PetButton
+            title="Adotar"
+            onClick={() => navigate(`/adopt-now?pet=${pet?.id}`)}
+          />
         </Box>
       </Box>
     </Box>

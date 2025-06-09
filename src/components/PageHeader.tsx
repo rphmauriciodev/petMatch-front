@@ -9,14 +9,35 @@ import {
 import "../assets/css/styles.css";
 import logo from "../assets/images/PetMatch.png";
 import { useNavigate } from "react-router-dom";
+import { PetButton } from "./PetButton";
+import { useUser } from "contexts/UserContext";
+import { useApi } from "hooks/useApi";
+import { User } from "utils/types";
+import { useEffect } from "react";
+
 export const PageHeader = () => {
+  const { user, setUser } = useUser();
+
+  const { data: fetchedUser, refetch } = useApi<User>(
+    user ? `users/${user.id}` : null
+  );
   const menuOptions = [
     { label: "Home", href: "/" },
     { label: "Encontre seu PET", href: "/find-your-pet" },
     { label: "Sobre Nós", href: "/about-us" },
   ];
 
+  if (user?.hasAdoption) {
+    menuOptions.push({ label: "Pós - Adoção", href: "/post-adoption" });
+  }
+
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (fetchedUser) {
+      setUser(fetchedUser);
+    }
+  }, [fetchedUser]);
 
   return (
     <Box
@@ -27,7 +48,7 @@ export const PageHeader = () => {
         width: "100%",
         left: 0,
         top: 0,
-        zIndex: 1
+        zIndex: 100,
       }}
     >
       <IconButton
@@ -39,7 +60,8 @@ export const PageHeader = () => {
       </IconButton>
       <List id="MenuOptions">
         {menuOptions.map((option) => (
-          <ListItemButton key={option.label}
+          <ListItemButton
+            key={option.label}
             onClick={(e) => {
               e.preventDefault();
               navigate(option.href);
@@ -73,26 +95,7 @@ export const PageHeader = () => {
           height: "100%",
         }}
       >
-        <Button
-          variant="contained"
-          sx={{
-            fontWeight: 600,
-            padding: "8px 16px",
-            borderRadius: "20px",
-            boxShadow: "none",
-            "&:hover": {
-              boxShadow: "none",
-            },
-            "&:focus": {
-              boxShadow: "none",
-            },
-            "&:active": {
-              boxShadow: "none",
-            },
-          }}
-        >
-          Adote agora
-        </Button>
+        <PetButton title="Adote agora" onClick={() => navigate("/adopt-now")} />
       </Box>
     </Box>
   );

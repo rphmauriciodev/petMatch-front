@@ -4,13 +4,16 @@ import reportWebVitals from "./reportWebVitals";
 import Main from "./pages/Main";
 import { ThemeProvider } from "@emotion/react";
 import mainTheme from "theme/mainTheme";
+import { UserProvider } from "contexts/UserContext";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <ThemeProvider theme={mainTheme}>
-    <Main />
+    <UserProvider>
+      <Main />
+    </UserProvider>
   </ThemeProvider>
 );
 

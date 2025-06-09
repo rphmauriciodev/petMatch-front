@@ -1,12 +1,12 @@
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Pet } from "utils/types";
 import { useState } from "react";
 import { PetsDetail } from "./PetDetail";
 import { Modal } from "@mui/material";
+import { PetButton } from "./PetButton";
 
 export default function PetCard({ pet }: { pet: Pet }) {
   const dataCadastro = new Date(pet.dataCadastro);
@@ -41,29 +41,15 @@ export default function PetCard({ pet }: { pet: Pet }) {
           <Typography variant="body2" sx={{ color: "text.secondary" }}>
             Está conosco desde: {fullData}
           </Typography>
-          <Button
-            variant="contained"
+          <PetButton
+            title="Detalhes"
+            color="secondary"
             onClick={() => setOpen(!open)}
             sx={{
-              fontWeight: 600,
-              padding: "8px 16px",
-              borderRadius: "20px",
-              boxShadow: "none",
               marginTop: "8px",
-              "&:hover": {
-                boxShadow: "none",
-              },
-              "&:focus": {
-                boxShadow: "none",
-              },
-              "&:active": {
-                boxShadow: "none",
-              },
+              padding: "8px 16px",
             }}
-            color="secondary"
-          >
-            Detalhes
-          </Button>
+          />
         </CardContent>
       </Card>
 
@@ -73,7 +59,7 @@ export default function PetCard({ pet }: { pet: Pet }) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <PetsDetail onClose={handleOpenModal} id={pet.id}/>
+        <PetsDetail onClose={handleOpenModal} id={pet.id} />
       </Modal>
     </>
   );

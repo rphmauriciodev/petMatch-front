@@ -4,6 +4,8 @@ import { useApi } from "hooks/useApi";
 import { Pet } from "utils/types";
 import PetCard from "components/PetCard";
 import { useNavigate } from "react-router-dom";
+import { PetButton } from "components/PetButton";
+import { PetField } from "components/PetField";
 
 const Home = () => {
   const { data: pets } = useApi<Pet[]>("/pets/destaques");
@@ -48,22 +50,12 @@ const Home = () => {
             Simplifique o processo de adoção e transforme vidas
           </Typography>
         </Box>
-        <TextField
-          variant="outlined"
+        <PetField
           placeholder="Buscar por nome, espécie, ou cidade"
           InputProps={{
             startAdornment: (
               <SearchIcon sx={{ marginRight: "4px", color: "#85868a" }} />
             ),
-          }}
-          sx={{
-            marginTop: "28px",
-            width: "100%",
-            "& .MuiOutlinedInput-root": {
-              borderColor: "primary.main",
-              borderRadius: "20px",
-              backgroundColor: "#f5f5f5",
-            },
           }}
         />
         <Box
@@ -74,43 +66,22 @@ const Home = () => {
             gap: "16px",
           }}
         >
-          <Button
-            variant="contained"
-            size="large"
-            onClick={() => navigate("find-your-pet")}
+          <PetButton
+            title="Ver todos animais"
+            onClick={() => navigate("/find-your-pet")}
             sx={{
-              fontWeight: 600,
-              padding: "8px 16px",
-              borderRadius: "20px",
-              boxShadow: "none",
-              "&:hover": {
-                boxShadow: "none",
-              },
-              "&:focus": {
-                boxShadow: "none",
-              },
-              "&:active": {
-                boxShadow: "none",
-              },
               width: "100%",
             }}
-          >
-            Ver todos os animais
-          </Button>
-          <Button
+          />
+          <PetButton
+            title="
+            Como funciona"
             onClick={() => navigate("/how-adopt")}
             variant="outlined"
             size="large"
-            sx={{
-              padding: "8px 16px",
-              borderRadius: "20px",
-              fontWeight: 600,
-              width: "100%",
-            }}
+            sx={{ width: "100%" }}
             color="secondary"
-          >
-            Como funciona
-          </Button>
+          />
         </Box>
       </Box>
       <Box sx={{ marginTop: "74px" }}></Box>

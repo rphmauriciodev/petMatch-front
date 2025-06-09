@@ -18,3 +18,9 @@ export interface PetDetail {
   fotoBase64: string;
   dataCadastro: Date;
 }
+
+export interface User {
+  id: number;
+  nome: string;
+  hasAdoption: boolean;
+}
